@@ -1,0 +1,76 @@
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="100%">
+        <mat-card style="height: 100%; background-color: white; ">
+            <mat-card-header>
+                <mat-card-title>
+                    POS SYSTEM
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-tab-group>
+                <mat-tab label="UPDATE CUSTOMER DETAILS">
+                    <mat-card>
+                        <mat-card-content>
+                            <div>
+                                <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                    <button mat-raised-button color="primary" align="left" routerLink="/">ADD
+                                        ITEMS</button>
+                                </mat-card-actions>
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h4>UPADTE ITEM</h4>
+                                        <form class="form" [formGroup]="itemForm">
+                                            <div fxLayout="column">
+                                                <div fxLayout="row" fxFlex="100">
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Item Name"
+                                                            formControlName="itemName">
+                                                        <mat-error
+                                                            *ngIf="ItemName.touched && ItemName.invalid && ItemName.errors.required">
+                                                            Item Name is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Unit Price" type="number"
+                                                            value="unitPrice" formControlName="unitPrice">
+                                                        <mat-error
+                                                            *ngIf="UnitPrice.touched && UnitPrice.invalid && UnitPrice.errors.required">
+                                                            Unit Price is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Quantity" type="number"
+                                                            value="itemQnt" formControlName="itemQnt">
+                                                        <mat-error
+                                                            *ngIf="ItemQnt.touched && ItemQnt.invalid && ItemQnt.errors.required">
+                                                            Quantity of Item is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </mat-card-content>
+                                    <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                        <button mat-raised-button color="primary" align="left"
+                                            (click)="SaveItem()">UPDATE</button>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </div>
+
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+
+            </mat-tab-group>
+
+
+        </mat-card>
+    </div>
+</div>

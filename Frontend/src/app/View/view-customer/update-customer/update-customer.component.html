@@ -1,0 +1,83 @@
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="100%">
+        <mat-card style="height: 100%; background-color: white; ">
+            <mat-card-header>
+                <mat-card-title>
+                    POS SYSTEM
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-tab-group>
+                <mat-tab label="UPDATE CUSTOMER DETAILS">
+                    <mat-card>
+                        <mat-card-content>
+                            <div>
+                                <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                    <button mat-raised-button color="primary" align="left" routerLink="/">ADD
+                                        CUSTOMERS</button>
+                                </mat-card-actions>
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h4>UPDATE CUSTOMER</h4>
+                                        <form class="form" [formGroup]="customerForm">
+                                            <div fxLayout="column">
+
+                                                <div fxLayout="row" fxFlex="100">
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Customer Name" tabindex="4"
+                                                            formControlName="name">
+                                                        <mat-error
+                                                            *ngIf="Name.touched && Name.invalid && Name.errors.required">
+                                                            Name is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Address" tabindex="4"
+                                                            formControlName="adress">
+                                                        <mat-error
+                                                            *ngIf="Adress.touched && Adress.invalid && Adress.errors.required">
+                                                            Address is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Mobile No" tabindex="4"
+                                                            formControlName="mobile">
+                                                        <mat-error
+                                                            *ngIf="Mobile.touched && Mobile.invalid && Mobile.errors.required">
+                                                            Mobile No is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                        <mat-error
+                                                            *ngIf="Mobile.touched && Mobile.invalid && Mobile.errors.pattern">
+                                                            Please, Enter
+                                                            <strong>10 digit</strong>
+                                                            Mobile Number.
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </mat-card-content>
+                                    <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                        <button mat-raised-button color="primary" align="left"
+                                            (click)="SaveCustomer()">UPDATE</button>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </div>
+
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+
+            </mat-tab-group>
+
+
+        </mat-card>
+    </div>
+</div>

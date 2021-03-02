@@ -1,0 +1,243 @@
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+    <div fxFlex="100%">
+        <mat-card style="height: 100%; background-color: white; ">
+            <mat-card-header>
+                <mat-card-title>
+                    POS SYSTEM
+                </mat-card-title>
+            </mat-card-header>
+
+            <mat-tab-group>
+                <mat-tab label="ADD CUSTOMER">
+                    <mat-card>
+                        <mat-card-content>
+                            <div>
+                                <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                    <button mat-raised-button color="primary" align="left"
+                                        routerLink="/viewCustomer">VIEW ALL CUSTOMERS</button>
+                                </mat-card-actions>
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h4>ADD NEW CUSTOMER</h4>
+                                        <form class="form" [formGroup]="customerForm">
+                                            <div fxLayout="column">
+
+                                                <div fxLayout="row" fxFlex="100">
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Customer Name" tabindex="4"
+                                                            formControlName="name">
+                                                        <mat-error
+                                                            *ngIf="Name.touched && Name.invalid && Name.errors.required">
+                                                            Name is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Address" tabindex="4"
+                                                            formControlName="adress">
+                                                        <mat-error
+                                                            *ngIf="Adress.touched && Adress.invalid && Adress.errors.required">
+                                                            Address is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Mobile No" tabindex="4"
+                                                            formControlName="mobile">
+                                                        <mat-error
+                                                            *ngIf="Mobile.touched && Mobile.invalid && Mobile.errors.required">
+                                                            Mobile No is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                        <mat-error
+                                                            *ngIf="Mobile.touched && Mobile.invalid && Mobile.errors.pattern">
+                                                            Please, Enter
+                                                            <strong>10 digit</strong>
+                                                            Mobile Number.
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </mat-card-content>
+                                    <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                        <button mat-raised-button color="primary" align="left"
+                                            (click)="SaveCustomer()">SAVE</button>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </div>
+
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+                <mat-tab label="ADD ITEM">
+                    <mat-card>
+                        <mat-card-content>
+                            <div>
+                                <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                    <button mat-raised-button color="primary" align="left"
+                                        routerLink="/viewCustomer">VIEW ALL ITEMS</button>
+                                </mat-card-actions>
+                                <mat-card>
+                                    <mat-card-content>
+                                        <h4>ADD NEW ITEM</h4>
+                                        <form class="form" [formGroup]="itemForm">
+                                            <div fxLayout="column">
+                                                <div fxLayout="row" fxFlex="100">
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Item Name"
+                                                           formControlName="itemName">
+                                                        <mat-error
+                                                            *ngIf="ItemName.touched && ItemName.invalid && ItemName.errors.required">
+                                                            Item Name is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Unit Price" type="number"
+                                                            value="unitPrice" formControlName="unitPrice">
+                                                        <mat-error
+                                                            *ngIf="UnitPrice.touched && UnitPrice.invalid && UnitPrice.errors.required">
+                                                            Unit Price is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                    <div fxFlex="5"></div>
+                                                    <mat-form-field class="full-width" fxFlex="30">
+                                                        <input matInput placeholder="Quantity" type="number"
+                                                            value="itemQnt" formControlName="itemQnt">
+                                                        <mat-error
+                                                            *ngIf="ItemQnt.touched && ItemQnt.invalid && ItemQnt.errors.required">
+                                                            Quantity of Item is
+                                                            <strong>required</strong>
+                                                        </mat-error>
+                                                    </mat-form-field>
+                                                </div>
+
+                                            </div>
+                                        </form>
+                                    </mat-card-content>
+                                    <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                        <button mat-raised-button color="primary" align="left"
+                                            (click)="SaveItem()">SAVE</button>
+                                    </mat-card-actions>
+                                </mat-card>
+                            </div>
+
+                        </mat-card-content>
+                    </mat-card>
+                </mat-tab>
+
+
+                <mat-tab label="PLACE AN ORDER">
+                    <mat-card>
+                        <mat-card-content>
+                            <form class="form" [formGroup]="orderForm">
+                                <div fxLayout="column">
+                                    <div fxLayout="row" fxFlex="100">
+                                        <mat-form-field class="full-width" fxFlex="30">
+                                            <mat-select formControlName="customer" placeholder="Customer Name" required>
+                                                <mat-option *ngFor="let cus of customerArray" [value]="cus.PId">
+                                                    {{cus.Name}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <div fxFlex="5"></div>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                            <form class="form" [formGroup]="orderDataForm">
+                                <div fxLayout="column">
+                                    <div fxLayout="row" fxFlex="100">
+                                        <mat-form-field class="full-width" fxFlex="30">
+                                            <mat-select formControlName="item" placeholder="Item Name" required>
+                                                <mat-option *ngFor="let it of itemArray" [value]="it.PId">
+                                                    {{it.Name}}</mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                        <div fxFlex="5"></div>
+                                        <mat-form-field class="full-width" fxFlex="30">
+                                            <input matInput placeholder="Quantity" type="number" value="qtity"
+                                                formControlName="qtity">
+                                            <mat-error *ngIf="Qtity.touched && Qtity.invalid && Qtity.errors.required">
+                                                Quantity of Item is
+                                                <strong>required</strong>
+                                            </mat-error>
+                                        </mat-form-field>
+                                        <div fxFlex="5"></div>
+                                        <mat-form-field class="full-width" fxFlex="30">
+                                            <input matInput placeholder="Discount(%)" type="number"
+                                                (blur)="validateDis()" value="discount" formControlName="discount"
+                                                max="100">
+                                            <mat-error *ngIf="Discount.touched && Discount.invalid">
+                                                Disount is Invalid
+                                                <!-- <strong>required</strong> -->
+                                            </mat-error>
+                                        </mat-form-field>
+                                    </div>
+
+                                </div>
+                            </form>
+
+                            <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                <button mat-raised-button color="primary" align="left"
+                                    (click)="AddItemToCart()">ADD</button>
+                            </mat-card-actions>
+
+                            <mat-card-content>
+                                <div style="height: 188px; overflow-y: auto;">
+                                    <mat-table #table [dataSource]="dataSourceOrder" style="height: 258px;">
+
+                                        <ng-container matColumnDef="itemName">
+                                            <mat-header-cell *matHeaderCellDef> Item Name </mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.ItemName}} </mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="qtity">
+                                            <mat-header-cell *matHeaderCellDef> Quantity </mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.Qtity}} </mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="discount">
+                                            <mat-header-cell *matHeaderCellDef> Discount </mat-header-cell>
+                                            <mat-cell *matCellDef="let element"> {{element.Discount}} %</mat-cell>
+                                        </ng-container>
+
+                                        <ng-container matColumnDef="remove" sticky>
+                                            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                                            <mat-cell *matCellDef="let element" style="justify-content:center">
+                                                <button mat-raised-button color="warn" align="left"
+                                                    (click)="remove(element)">REMOVE</button>
+                                            </mat-cell>
+                                        </ng-container>
+
+
+                                        <mat-header-row *matHeaderRowDef="displayedColumnsOrder"></mat-header-row>
+                                        <mat-row *matRowDef="let row; columns: displayedColumnsOrder;"></mat-row>
+                                    </mat-table>
+                                </div>
+
+                                <mat-card-actions style="display: flex; justify-content: flex-end;">
+                                    <button mat-raised-button color="primary" align="left"
+                                        (click)="SaveOrder()">SAVE</button>
+                                </mat-card-actions>
+                            </mat-card-content>
+                        </mat-card-content>
+
+                    </mat-card>
+                </mat-tab>
+
+
+
+            </mat-tab-group>
+
+
+        </mat-card>
+    </div>
+</div>

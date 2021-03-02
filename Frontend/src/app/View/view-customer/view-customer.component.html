@@ -1,0 +1,196 @@
+<!-- <mat-card-header>
+  <mat-card-title>
+      POS SYSTEM
+  </mat-card-title>
+</mat-card-header>
+<div>
+  <mat-card-actions style="display: flex; justify-content: flex-end;">
+    <button  mat-raised-button color="primary" align="left" routerLink="/">ADD CUSTOMERS</button>
+  </mat-card-actions>
+</div>
+
+<mat-card>
+  <mat-card-content>
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSourceCustomer" style="height: 258px;">
+        
+        <ng-container matColumnDef="name">
+          <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="adress">
+          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Adress}} </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="mobile">
+          <mat-header-cell *matHeaderCellDef>  Mobile No </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.Mobile}} </mat-cell>
+        </ng-container>
+  
+        <ng-container matColumnDef="table-edit" sticky>
+            <mat-header-cell *matHeaderCellDef ></mat-header-cell>
+            <mat-cell *matCellDef="let element" style="justify-content:flex-end"> 
+             <button mat-raised-button color="primary" align="left" (click)="edit(element)">EDIT</button>
+            </mat-cell>
+          </ng-container>
+  
+          <ng-container matColumnDef="table-remove" sticky>
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let element" style="justify-content:flex-end"> 
+              <button mat-raised-button color="warn" align="left" (click)="edit(element)">DELETE</button>
+            </mat-cell>
+          </ng-container>
+  
+        
+  
+  
+        <mat-header-row *matHeaderRowDef="displayedColumnsCustomer"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumnsCustomer;"></mat-row>
+      </table>
+      </div>
+    </mat-card-content>
+    </mat-card> -->
+
+
+<div fxLayout="row" fxLayout.sm="column" fxLayout.xs="column" fxLayoutWrap fxLayoutGap="0.5%" fxLayoutAlign="center">
+  <div fxFlex="100%">
+    <mat-card style="height: 100%; background-color: white; ">
+      <mat-card-header>
+        <mat-card-title>
+          POS SYSTEM
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-tab-group>
+        <mat-tab label="VIEW ALL CUSTOMER">
+          <mat-card>
+            <mat-card-content>
+              <div>
+                <mat-card-actions style="display: flex; justify-content: flex-end;">
+                  <button mat-raised-button color="primary" align="left" routerLink="/">ADD NEW
+                    CUSTOMER</button>
+                </mat-card-actions>
+                <mat-card>
+                  <mat-card-content>
+
+                    <div class="mat-elevation-z8">
+                      <table mat-table [dataSource]="dataSourceCustomer" style="height: 258px;">
+
+                        <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef> Customer Name </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="adress">
+                          <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.Adress}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="mobile">
+                          <mat-header-cell *matHeaderCellDef> Mobile No </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.Mobile}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="table-edit" sticky>
+                          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                          <mat-cell *matCellDef="let element" style="justify-content:flex-end">
+                            <button mat-raised-button color="primary" align="left" (click)="edit(element)">EDIT</button>
+                          </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="table-remove" sticky>
+                          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                          <mat-cell *matCellDef="let element" style="justify-content:flex-end">
+                            <button mat-raised-button color="warn" align="left"
+                              (click)="delete(element)">DELETE</button>
+                          </mat-cell>
+                        </ng-container>
+
+
+
+
+                        <mat-header-row *matHeaderRowDef="displayedColumnsCustomer"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumnsCustomer;"></mat-row>
+                      </table>
+                    </div>
+                  </mat-card-content>
+                  <mat-card-actions style="display: flex; justify-content: flex-end;">
+                    <button mat-raised-button color="primary" align="left" (click)="SaveCustomer()">SAVE</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+        </mat-tab>
+
+
+        <mat-tab label="VIEW ALL ITEMS">
+          <mat-card>
+            <mat-card-content>
+              <div>
+                <mat-card-actions style="display: flex; justify-content: flex-end;">
+                  <button mat-raised-button color="primary" align="left" routerLink="/">ADD NEW ITEM</button>
+                </mat-card-actions>
+                <mat-card>
+                  <mat-card-content>
+
+                    <div class="mat-elevation-z8">
+                      <table mat-table [dataSource]="dataSourceItem" style="height: 258px;">
+
+                        <ng-container matColumnDef="name">
+                          <mat-header-cell *matHeaderCellDef> Item Name </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.Name}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="qtity">
+                          <mat-header-cell *matHeaderCellDef> Item Quantity </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.Qtity}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="uPrice">
+                          <mat-header-cell *matHeaderCellDef> Unit Price </mat-header-cell>
+                          <mat-cell *matCellDef="let element"> {{element.UPrice}} </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="table-edit" sticky>
+                          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                          <mat-cell *matCellDef="let element" style="justify-content:flex-end">
+                            <button mat-raised-button color="primary" align="left"
+                              (click)="editItem(element)">EDIT</button>
+                          </mat-cell>
+                        </ng-container>
+
+                        <ng-container matColumnDef="table-remove" sticky>
+                          <mat-header-cell *matHeaderCellDef></mat-header-cell>
+                          <mat-cell *matCellDef="let element" style="justify-content:flex-end">
+                            <button mat-raised-button color="warn" align="left"
+                              (click)="deleteItem(element)">DELETE</button>
+                          </mat-cell>
+                        </ng-container>
+
+
+
+
+                        <mat-header-row *matHeaderRowDef="displayedColumnsItem"></mat-header-row>
+                        <mat-row *matRowDef="let row; columns: displayedColumnsItem;"></mat-row>
+                      </table>
+                    </div>
+                  </mat-card-content>
+                  <mat-card-actions style="display: flex; justify-content: flex-end;">
+                    <button mat-raised-button color="primary" align="left" (click)="SaveCustomer()">SAVE</button>
+                  </mat-card-actions>
+                </mat-card>
+              </div>
+
+            </mat-card-content>
+          </mat-card>
+        </mat-tab>
+      </mat-tab-group>
+
+
+    </mat-card>
+  </div>
+</div>
